@@ -28,6 +28,14 @@ type FakeDuckV1alpha1 struct {
 	*testing.Fake
 }
 
+func (c *FakeDuckV1alpha1) Channels(namespace string) v1alpha1.ChannelInterface {
+	return &FakeChannels{c, namespace}
+}
+
+func (c *FakeDuckV1alpha1) ChannelableReves(namespace string) v1alpha1.ChannelableRefInterface {
+	return &FakeChannelableReves{c, namespace}
+}
+
 func (c *FakeDuckV1alpha1) Generationals(namespace string) v1alpha1.GenerationalInterface {
 	return &FakeGenerationals{c, namespace}
 }
@@ -36,12 +44,12 @@ func (c *FakeDuckV1alpha1) KResources(namespace string) v1alpha1.KResourceInterf
 	return &FakeKResources{c, namespace}
 }
 
-func (c *FakeDuckV1alpha1) Targets(namespace string) v1alpha1.TargetInterface {
-	return &FakeTargets{c, namespace}
+func (c *FakeDuckV1alpha1) Sinks(namespace string) v1alpha1.SinkInterface {
+	return &FakeSinks{c, namespace}
 }
 
-func (c *FakeDuckV1alpha1) Topics(namespace string) v1alpha1.TopicInterface {
-	return &FakeTopics{c, namespace}
+func (c *FakeDuckV1alpha1) Targets(namespace string) v1alpha1.TargetInterface {
+	return &FakeTargets{c, namespace}
 }
 
 // RESTClient returns a RESTClient that is used to communicate
