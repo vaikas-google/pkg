@@ -20,12 +20,12 @@ package v1alpha1
 
 type ChannelExpansion interface{}
 
-type ChannelableRefExpansion interface{}
-
 type GenerationalExpansion interface{}
 
 type KResourceExpansion interface{}
 
 type SinkExpansion interface{}
+
+type SubscriptionExpansion interface{}
 
 type TargetExpansion interface{}

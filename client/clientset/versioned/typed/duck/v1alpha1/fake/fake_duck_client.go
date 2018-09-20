@@ -32,10 +32,6 @@ func (c *FakeDuckV1alpha1) Channels(namespace string) v1alpha1.ChannelInterface 
 	return &FakeChannels{c, namespace}
 }
 
-func (c *FakeDuckV1alpha1) ChannelableReves(namespace string) v1alpha1.ChannelableRefInterface {
-	return &FakeChannelableReves{c, namespace}
-}
-
 func (c *FakeDuckV1alpha1) Generationals(namespace string) v1alpha1.GenerationalInterface {
 	return &FakeGenerationals{c, namespace}
 }
@@ -46,6 +42,10 @@ func (c *FakeDuckV1alpha1) KResources(namespace string) v1alpha1.KResourceInterf
 
 func (c *FakeDuckV1alpha1) Sinks(namespace string) v1alpha1.SinkInterface {
 	return &FakeSinks{c, namespace}
+}
+
+func (c *FakeDuckV1alpha1) Subscriptions(namespace string) v1alpha1.SubscriptionInterface {
+	return &FakeSubscriptions{c, namespace}
 }
 
 func (c *FakeDuckV1alpha1) Targets(namespace string) v1alpha1.TargetInterface {

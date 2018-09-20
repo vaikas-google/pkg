@@ -26,14 +26,14 @@ import (
 type Interface interface {
 	// Channels returns a ChannelInformer.
 	Channels() ChannelInformer
-	// ChannelableReves returns a ChannelableRefInformer.
-	ChannelableReves() ChannelableRefInformer
 	// Generationals returns a GenerationalInformer.
 	Generationals() GenerationalInformer
 	// KResources returns a KResourceInformer.
 	KResources() KResourceInformer
 	// Sinks returns a SinkInformer.
 	Sinks() SinkInformer
+	// Subscriptions returns a SubscriptionInformer.
+	Subscriptions() SubscriptionInformer
 	// Targets returns a TargetInformer.
 	Targets() TargetInformer
 }
@@ -54,11 +54,6 @@ func (v *version) Channels() ChannelInformer {
 	return &channelInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
 }
 
-// ChannelableReves returns a ChannelableRefInformer.
-func (v *version) ChannelableReves() ChannelableRefInformer {
-	return &channelableRefInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
-}
-
 // Generationals returns a GenerationalInformer.
 func (v *version) Generationals() GenerationalInformer {
 	return &generationalInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
@@ -72,6 +67,11 @@ func (v *version) KResources() KResourceInformer {
 // Sinks returns a SinkInformer.
 func (v *version) Sinks() SinkInformer {
 	return &sinkInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
+}
+
+// Subscriptions returns a SubscriptionInformer.
+func (v *version) Subscriptions() SubscriptionInformer {
+	return &subscriptionInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
 }
 
 // Targets returns a TargetInformer.

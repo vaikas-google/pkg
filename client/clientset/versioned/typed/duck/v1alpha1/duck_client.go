@@ -28,10 +28,10 @@ import (
 type DuckV1alpha1Interface interface {
 	RESTClient() rest.Interface
 	ChannelsGetter
-	ChannelableRevesGetter
 	GenerationalsGetter
 	KResourcesGetter
 	SinksGetter
+	SubscriptionsGetter
 	TargetsGetter
 }
 
@@ -44,10 +44,6 @@ func (c *DuckV1alpha1Client) Channels(namespace string) ChannelInterface {
 	return newChannels(c, namespace)
 }
 
-func (c *DuckV1alpha1Client) ChannelableReves(namespace string) ChannelableRefInterface {
-	return newChannelableReves(c, namespace)
-}
-
 func (c *DuckV1alpha1Client) Generationals(namespace string) GenerationalInterface {
 	return newGenerationals(c, namespace)
 }
@@ -58,6 +54,10 @@ func (c *DuckV1alpha1Client) KResources(namespace string) KResourceInterface {
 
 func (c *DuckV1alpha1Client) Sinks(namespace string) SinkInterface {
 	return newSinks(c, namespace)
+}
+
+func (c *DuckV1alpha1Client) Subscriptions(namespace string) SubscriptionInterface {
+	return newSubscriptions(c, namespace)
 }
 
 func (c *DuckV1alpha1Client) Targets(namespace string) TargetInterface {
