@@ -42,6 +42,14 @@ type KResourceListerExpansion interface{}
 // KResourceNamespaceLister.
 type KResourceNamespaceListerExpansion interface{}
 
+// LegacyTargetListerExpansion allows custom methods to be added to
+// LegacyTargetLister.
+type LegacyTargetListerExpansion interface{}
+
+// LegacyTargetNamespaceListerExpansion allows custom methods to be added to
+// LegacyTargetNamespaceLister.
+type LegacyTargetNamespaceListerExpansion interface{}
+
 // SinkListerExpansion allows custom methods to be added to
 // SinkLister.
 type SinkListerExpansion interface{}

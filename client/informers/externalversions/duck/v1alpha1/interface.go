@@ -30,6 +30,8 @@ type Interface interface {
 	Generationals() GenerationalInformer
 	// KResources returns a KResourceInformer.
 	KResources() KResourceInformer
+	// LegacyTargets returns a LegacyTargetInformer.
+	LegacyTargets() LegacyTargetInformer
 	// Sinks returns a SinkInformer.
 	Sinks() SinkInformer
 	// Subscriptions returns a SubscriptionInformer.
@@ -62,6 +64,11 @@ func (v *version) Generationals() GenerationalInformer {
 // KResources returns a KResourceInformer.
 func (v *version) KResources() KResourceInformer {
 	return &kResourceInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
+}
+
+// LegacyTargets returns a LegacyTargetInformer.
+func (v *version) LegacyTargets() LegacyTargetInformer {
+	return &legacyTargetInformer{factory: v.factory, namespace: v.namespace, tweakListOptions: v.tweakListOptions}
 }
 
 // Sinks returns a SinkInformer.

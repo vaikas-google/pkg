@@ -40,6 +40,10 @@ func (c *FakeDuckV1alpha1) KResources(namespace string) v1alpha1.KResourceInterf
 	return &FakeKResources{c, namespace}
 }
 
+func (c *FakeDuckV1alpha1) LegacyTargets(namespace string) v1alpha1.LegacyTargetInterface {
+	return &FakeLegacyTargets{c, namespace}
+}
+
 func (c *FakeDuckV1alpha1) Sinks(namespace string) v1alpha1.SinkInterface {
 	return &FakeSinks{c, namespace}
 }

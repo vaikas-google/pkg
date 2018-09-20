@@ -30,6 +30,7 @@ type DuckV1alpha1Interface interface {
 	ChannelsGetter
 	GenerationalsGetter
 	KResourcesGetter
+	LegacyTargetsGetter
 	SinksGetter
 	SubscriptionsGetter
 	TargetsGetter
@@ -50,6 +51,10 @@ func (c *DuckV1alpha1Client) Generationals(namespace string) GenerationalInterfa
 
 func (c *DuckV1alpha1Client) KResources(namespace string) KResourceInterface {
 	return newKResources(c, namespace)
+}
+
+func (c *DuckV1alpha1Client) LegacyTargets(namespace string) LegacyTargetInterface {
+	return newLegacyTargets(c, namespace)
 }
 
 func (c *DuckV1alpha1Client) Sinks(namespace string) SinkInterface {

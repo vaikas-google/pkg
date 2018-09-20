@@ -65,6 +65,8 @@ func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource
 		return &genericInformer{resource: resource.GroupResource(), informer: f.Duck().V1alpha1().Generationals().Informer()}, nil
 	case duckv1alpha1.SchemeGroupVersion.WithResource("kresources"):
 		return &genericInformer{resource: resource.GroupResource(), informer: f.Duck().V1alpha1().KResources().Informer()}, nil
+	case duckv1alpha1.SchemeGroupVersion.WithResource("legacytargets"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Duck().V1alpha1().LegacyTargets().Informer()}, nil
 	case duckv1alpha1.SchemeGroupVersion.WithResource("sinks"):
 		return &genericInformer{resource: resource.GroupResource(), informer: f.Duck().V1alpha1().Sinks().Informer()}, nil
 	case duckv1alpha1.SchemeGroupVersion.WithResource("subscriptions"):

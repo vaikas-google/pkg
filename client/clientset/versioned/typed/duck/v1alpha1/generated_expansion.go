@@ -24,6 +24,8 @@ type GenerationalExpansion interface{}
 
 type KResourceExpansion interface{}
 
+type LegacyTargetExpansion interface{}
+
 type SinkExpansion interface{}
 
 type SubscriptionExpansion interface{}
