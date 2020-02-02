@@ -31,7 +31,11 @@ type KnativeReference struct {
 
 	// Namespace of the referent.
 	// More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/
-	Namespace string `json:"namespace"`
+	// Note that to ensure smooth transition to already stored types, we're making
+	// this optional for now. Validation/defaulting will ensure that all the right things
+	// happen, but for openapi we set it optional.
+	// +optional
+	Namespace string `json:"namespace, omitempty"`
 
 	// Name of the referent.
 	// More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
