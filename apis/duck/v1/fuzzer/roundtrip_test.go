@@ -14,25 +14,21 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-package v1beta1
+package v1
 
 import (
 	"testing"
 
-	"k8s.io/apimachinery/pkg/api/apitesting/fuzzer"
 	"k8s.io/apimachinery/pkg/runtime"
 	utilruntime "k8s.io/apimachinery/pkg/util/runtime"
+	duckv1 "knative.dev/pkg/apis/duck/v1"
 	pkgfuzzer "knative.dev/pkg/apis/testing/fuzzer"
 	"knative.dev/pkg/apis/testing/roundtrip"
 )
 
 func TestEventingRoundTripTypesToJSON(t *testing.T) {
 	scheme := runtime.NewScheme()
-	utilruntime.Must(AddToScheme(scheme))
+	utilruntime.Must(duckv1.AddToScheme(scheme))
 
-	fuzzerFuncs := fuzzer.MergeFuzzerFuncs(
-		pkgfuzzer.Funcs,
-		FuzzerFuncs,
-	)
-	roundtrip.ExternalTypesViaJSON(t, scheme, fuzzerFuncs)
+	roundtrip.ExternalTypesViaJSON(t, scheme, pkgfuzzer.Funcs)
 }

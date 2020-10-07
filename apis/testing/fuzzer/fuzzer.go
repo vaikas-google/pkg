@@ -25,7 +25,12 @@ import (
 	"k8s.io/apimachinery/pkg/api/apitesting/fuzzer"
 	"k8s.io/apimachinery/pkg/runtime/serializer"
 	"knative.dev/pkg/apis"
+	duckv1 "knative.dev/pkg/apis/duck/v1"
+	duckv1beta1 "knative.dev/pkg/apis/duck/v1beta1"
 )
+
+// Used for testing roundtrips
+var testConditions = apis.Conditions{{Type: apis.ConditionReady}, {Type: apis.ConditionSucceeded}}
 
 // Funcs includes fuzzing funcs for knative.dev/serving types
 //
@@ -43,6 +48,16 @@ var Funcs = fuzzer.MergeFuzzerFuncs(
 				)
 				u.RawPath = url.PathEscape(c.RandString())
 				u.RawQuery = url.QueryEscape(c.RandString())
+			},
+			func(status *duckv1beta1.Status, c fuzz.Continue) {
+				c.FuzzNoCustom(status)
+				status.SetConditions(testConditions)
+				FuzzConditions(status, c)
+			},
+			func(status *duckv1.Status, c fuzz.Continue) {
+				c.FuzzNoCustom(status)
+				status.SetConditions(testConditions)
+				FuzzConditions(status, c)
 			},
 		}
 	},
